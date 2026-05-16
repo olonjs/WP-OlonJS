@@ -159,7 +159,7 @@ The top-level `sections[]` stays flat as required by the `Page` schema; nesting 
   - Parse `post_content` as HTML.
   - Mutate post data during a GET request.
   - Skip schema validation in tests.
-  - Introduce custom `olon/*` blocks in the MVP (mapping is block-agnostic; custom blocks are a later milestone).
+  - Introduce custom blocks. The plugin is content-source-agnostic: it projects whatever blocks the WordPress site has authored (core or third-party). OlonJS is a JSON schema, not a block library.
 
 ## Success Criteria
 

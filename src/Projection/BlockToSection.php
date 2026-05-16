@@ -10,9 +10,16 @@ final class BlockToSection
     }
 
     /**
-     * Project a Gutenberg block (as returned by parse_blocks()) into an OlonJS
-     * section. Recurses into innerBlocks, attaching children under
+     * Project a Gutenberg block (already hydrated by BlockHydrator) into an
+     * OlonJS section. Recurses into innerBlocks, attaching children under
      * `data.innerBlocks` with the same shape at every depth.
+     *
+     * `data` mirrors the (hydrated) `attrs`. The hydration step extracts
+     * structured content from innerHTML upstream, so this projector never
+     * deals with HTML — `data` is content-only by construction.
+     *
+     * Metadata that is promoted to top-level section fields (`olonId` → `id`,
+     * `settings` → `settings`) is stripped from `data` to avoid duplication.
      *
      * @param array<string,mixed> $block
      * @param list<int>           $path  Indices from root, used by IdAssigner.
@@ -22,7 +29,9 @@ final class BlockToSection
     {
         $attrs = is_array($block['attrs'] ?? null) ? $block['attrs'] : [];
         $id    = $this->ids->ensure($postId, $path, $attrs);
-        $data  = $attrs;
+
+        $data = $attrs;
+        unset($data['olonId'], $data['settings']);
 
         $inner = is_array($block['innerBlocks'] ?? null) ? $block['innerBlocks'] : [];
         if ($inner !== []) {

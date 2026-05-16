@@ -31,7 +31,7 @@ The WordPress plugin is a complete implementation of an OlonJS content source. I
 | `OlonJsSiteManifestIndex` | `/mcp-manifest.json` |
 | `llms.txt` | `/llms.txt` |
 
-`sectionSchemas` are derived directly from the `attributes` map declared by each registered `olon/*` block in its `block.json`, converted to JSON Schema. Only the section types actually present on the requested page are emitted, matching the projection performed by `buildPageContract`.
+`sectionSchemas` are derived directly from the `attributes` map declared by each block registered with WordPress (core or third-party) in its `block.json`, converted to JSON Schema. Only the section types actually present on the requested page are emitted, matching the projection performed by `buildPageContract`. OlonJS does not require any custom block namespace: whatever `blockName` Gutenberg produces becomes the `section.type`.
 
 ## Alternatives Considered
 

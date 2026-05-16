@@ -54,7 +54,7 @@ final class BlockToSectionTest extends TestCase
     public function test_attrs_settings_are_promoted_to_section_settings(): void
     {
         $block = [
-            'blockName'   => 'olon/hero',
+            'blockName'   => 'core/cover',
             'attrs'       => [
                 'title'    => 'T',
                 'settings' => ['theme' => 'dark', 'padding' => 'lg'],
@@ -71,7 +71,7 @@ final class BlockToSectionTest extends TestCase
     public function test_no_settings_key_when_attrs_has_no_settings(): void
     {
         $block = [
-            'blockName'   => 'olon/hero',
+            'blockName'   => 'core/cover',
             'attrs'       => ['title' => 'T'],
             'innerBlocks' => [],
         ];
@@ -84,7 +84,7 @@ final class BlockToSectionTest extends TestCase
     public function test_attrs_settings_must_be_an_array_to_be_promoted(): void
     {
         $block = [
-            'blockName'   => 'olon/hero',
+            'blockName'   => 'core/cover',
             'attrs'       => ['settings' => 'not-an-object'],
             'innerBlocks' => [],
         ];

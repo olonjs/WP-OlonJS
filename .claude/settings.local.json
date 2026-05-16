@@ -9,7 +9,12 @@
       "Bash(docker compose *)",
       "Bash(timeout 15 docker pull hello-world)",
       "Bash(docker events *)",
-      "Bash(MSYS_NO_PATHCONV=1 docker compose run --rm --entrypoint /bin/sh wpcli -c \"mariadb-check --print-defaults 2>&1; echo '---'; ls -la /etc/my.cnf* /etc/my.cnf.d/ /etc/mysql/ 2>&1\")"
+      "Bash(MSYS_NO_PATHCONV=1 docker compose run --rm --entrypoint /bin/sh wpcli -c \"mariadb-check --print-defaults 2>&1; echo '---'; ls -la /etc/my.cnf* /etc/my.cnf.d/ /etc/mysql/ 2>&1\")",
+      "Bash(curl -s http://localhost:8080/parent/child.json)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -i http://localhost:8080/parent/child.json)",
+      "Bash(curl -sL http://localhost:8080/parent/child.json)",
+      "Bash(curl -sL http://localhost:8080/about.json)"
     ]
   }
 }

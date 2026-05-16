@@ -21,7 +21,7 @@ Use **Gutenberg blocks as the canonical representation of OlonJS sections**. One
 
 | OlonJS `section` field | Source in Gutenberg block |
 |---|---|
-| `type` | `blockName` (e.g. `olon/hero` → `"olon/hero"`) |
+| `type` | `blockName` verbatim (e.g. `core/paragraph` → `"core/paragraph"`) |
 | `data` | `attrs` (the block's declared attributes) |
 | `id` | `attrs.olonId` if present, otherwise generated and persisted on first save |
 | `settings` | `attrs.settings` (optional) |

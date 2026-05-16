@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace Olon\WP\OlonJs;
 
 use Olon\WP\OlonJs\Http\JsonResponse;
+use Olon\WP\OlonJs\Hydration\BlockHydrator;
+use Olon\WP\OlonJs\Hydration\BlockTypeSchemaProvider;
+use Olon\WP\OlonJs\Hydration\RichTextToMarkdown;
+use Olon\WP\OlonJs\Hydration\SchemaSource;
 use Olon\WP\OlonJs\Projection\BlockToSection;
 use Olon\WP\OlonJs\Projection\IdAssigner;
 use Olon\WP\OlonJs\Projection\PageProjector;
@@ -25,9 +29,17 @@ final class Plugin
     {
         $this->idAssigner = new IdAssigner();
         $this->endpoint   = new JsonEndpoint();
-        $this->router     = new Router(
+
+        $schemaProvider = new BlockTypeSchemaProvider();
+        $hydrator       = new BlockHydrator(
+            new SchemaSource(new RichTextToMarkdown()),
+            $schemaProvider->asResolver(),
+        );
+
+        $this->router = new Router(
             new JsonResponse(),
             new PageProjector(new BlockToSection($this->idAssigner)),
+            $hydrator,
         );
     }
 

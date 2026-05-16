@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Olon\WP\OlonJs\Rewrite;
 
 use Olon\WP\OlonJs\Http\JsonResponse;
+use Olon\WP\OlonJs\Hydration\BlockHydrator;
 use Olon\WP\OlonJs\Projection\PageProjector;
 use WP_Post;
 
@@ -14,6 +15,7 @@ final class Router
     public function __construct(
         private readonly JsonResponse $response,
         private readonly PageProjector $projector,
+        private readonly BlockHydrator $hydrator,
     ) {
     }
 
@@ -36,12 +38,15 @@ final class Router
             return;
         }
 
+        $blocks = parse_blocks($post->post_content);
+        $hydrated = array_map(fn (array $b) => $this->hydrator->hydrate($b), array_values(array_filter($blocks, 'is_array')));
+
         $page = $this->projector->project([
             'postId'      => $post->ID,
             'slug'        => $slug,
             'title'       => get_the_title($post),
             'description' => get_the_excerpt($post),
-            'blocks'      => parse_blocks($post->post_content),
+            'blocks'      => $hydrated,
         ]);
 
         $this->response->send(200, $page);

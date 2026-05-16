@@ -199,7 +199,7 @@ BlockToSection (T3) ────► PageProjector (T4) ────► JsonRespo
 
 #### Task 8: Schema-conformance test harness
 
-**Description:** Wire `opis/json-schema` into the integration test base class. Add a helper `assertConformsToPageSchema(array $body)` that loads `vendor/olon/schemas/page.schema.json` (committed under `tests/fixtures/schemas/`) and validates the response. Retrofit every integration test from T5/T6/T7 to call it on success responses.
+**Description:** Wire `opis/json-schema` into the integration test base class. Add a helper `assertConformsToPageSchema(array $body)` that loads `tests/fixtures/schemas/page.schema.json` (a committed copy of the published OlonJS Page schema) and validates the response. Retrofit every integration test from T5/T6/T7 to call it on success responses.
 
 **Acceptance criteria:**
 - [ ] Every existing integration test asserting a 200 response now also asserts schema conformance.

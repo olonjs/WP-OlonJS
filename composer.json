@@ -2,7 +2,7 @@
     "name": "olon/wp-olonjs",
     "description": "Exposes every published WordPress page at /$slug.json as an OlonJS Page document.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": ">=8.1",
         "league/html-to-markdown": "^5.1"

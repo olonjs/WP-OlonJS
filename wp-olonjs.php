@@ -7,7 +7,7 @@
  * Requires PHP: 8.1
  * Requires at least: 6.4
  * Author:      Olon
- * License:     GPL-2.0-or-later
+ * License:     MIT
  * Text Domain: wp-olonjs
  */
 

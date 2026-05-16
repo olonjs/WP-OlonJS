@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"\\\\\\\\wsl.localhost\\\\ubuntu\\\\home\\\\dev\\\\WP-OlonJS\")",
+      "PowerShell(if \\(-not \\(Test-Path docs\\\\decisions\\)\\) { New-Item -ItemType Directory -Path docs\\\\decisions -Force | Out-Null }; Get-ChildItem docs\\\\decisions -ErrorAction SilentlyContinue | Select-Object Name)",
+      "Bash(mkdir -p \\\\\\\\\\\\\\\\wsl.localhost\\\\\\\\ubuntu\\\\\\\\home\\\\\\\\dev\\\\\\\\WP-OlonJS\\\\\\\\tests\\\\\\\\fixtures\\\\\\\\schemas 2>&1 || true)",
+      "PowerShell(New-Item -ItemType Directory -Path 'tests\\\\fixtures\\\\schemas' -Force)",
+      "Bash(chmod +x docker/scripts/seed.sh)",
+      "Bash(docker compose *)",
+      "Bash(timeout 15 docker pull hello-world)",
+      "Bash(docker events *)",
+      "Bash(MSYS_NO_PATHCONV=1 docker compose run --rm --entrypoint /bin/sh wpcli -c \"mariadb-check --print-defaults 2>&1; echo '---'; ls -la /etc/my.cnf* /etc/my.cnf.d/ /etc/mysql/ 2>&1\")"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+.git
+.github
+.claude
+.gitignore
+.distignore
+.phpunit.cache
+.phpunit.result.cache
+composer.json
+composer.lock
+phpcs.xml.dist
+phpunit.xml.dist
+phpunit-integration.xml.dist
+tests
+docs
+dist
+scripts
+node_modules

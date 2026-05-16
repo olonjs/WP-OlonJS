@@ -1,0 +1,49 @@
+{
+    "name": "olon/wp-olonjs",
+    "description": "Exposes every published WordPress page at /$slug.json as an OlonJS Page document.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "wp-coding-standards/wpcs": "^3.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "opis/json-schema": "^2.3",
+        "yoast/wp-test-utils": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Olon\\WP\\OlonJs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Olon\\WP\\OlonJs\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testsuite unit",
+        "test:integration": "phpunit -c phpunit-integration.xml.dist",
+        "test:all": [
+            "@test",
+            "@test:integration"
+        ],
+        "lint": "phpcs",
+        "lint:fix": "phpcbf",
+        "build": [
+            "@putenv COMPOSER_DEV_MODE=0",
+            "composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction",
+            "@php -r \"if (!is_dir('dist')) mkdir('dist', 0755, true);\"",
+            "@php scripts/build-zip.php",
+            "composer install --no-interaction"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    }
+}

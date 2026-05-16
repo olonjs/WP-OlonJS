@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://olon.js.org/schemas/v1/page.schema.json",
+  "title": "OlonJS Core Page Contract",
+  "type": "object",
+  "required": ["id", "slug", "meta", "sections"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+-page$" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-/]+$" },
+    "global-header": { "type": "boolean", "default": true },
+    "meta": {
+      "type": "object",
+      "required": ["title", "description"],
+      "properties": {
+        "title": { "type": "string", "minLength": 10 },
+        "description": { "type": "string", "minLength": 50 }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/section" }
+    }
+  },
+  "definitions": {
+    "section": {
+      "type": "object",
+      "required": ["id", "type", "data"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "data": { "type": "object" },
+        "settings": { "type": "object", "default": {} }
+      }
+    }
+  }
+}
